@@ -8,8 +8,15 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public TileBoard board;
     public CanvasGroup gameOverCanvasGroup;
+
+    public CanvasGroup gameWinCanvasGroup;
     public TextMeshProUGUI scoreTxt;
     public TextMeshProUGUI bestTxt;
+
+    public TextMeshProUGUI totalWonTimes;
+
+    private int totalWins;
+
 
     private int score;
 
@@ -38,7 +45,10 @@ public class GameManager : MonoBehaviour
         bestTxt.text = LoadBest().ToString();
         gameOverCanvasGroup.alpha = 0f;
         gameOverCanvasGroup.interactable = false;
-
+        gameOverCanvasGroup.gameObject.SetActive(false);
+        gameWinCanvasGroup.alpha = 0f;
+        gameWinCanvasGroup.interactable = false;
+        gameWinCanvasGroup.gameObject.SetActive(false);
         board.ClearBoard();
         board.CreateTile();
         board.CreateTile();
@@ -48,8 +58,20 @@ public class GameManager : MonoBehaviour
     {
 
         board.enabled = false;
+        gameOverCanvasGroup.gameObject.SetActive(true);
         gameOverCanvasGroup.interactable = true;
         StartCoroutine(Fade(gameOverCanvasGroup, 1f, 0.5f));
+    }
+
+    public void GameWin()
+    {
+        Debug.Log("YOU WIN!");
+        board.enabled = false;
+        gameWinCanvasGroup.gameObject.SetActive(true);
+        gameWinCanvasGroup.interactable = true;
+        StartCoroutine(Fade(gameWinCanvasGroup, 1f, 0.5f));
+        SetTotalWins();
+
     }
 
     private IEnumerator Fade(CanvasGroup canvasGroup, float to, float delay)
@@ -93,4 +115,14 @@ public class GameManager : MonoBehaviour
     {
         return PlayerPrefs.GetInt("bestScore", 0);
     }
+
+    private void SetTotalWins()
+    {
+
+        totalWins++;
+        PlayerPrefs.SetInt("totalWins", totalWins);
+        totalWonTimes.text = totalWins.ToString();
+    }
+
+
 }
