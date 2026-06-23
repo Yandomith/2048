@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SwipeDetection : MonoBehaviour
 {
-    private TouchInputManager touchInputManager;
+
 
 
     [SerializeField]
@@ -21,10 +21,7 @@ public class SwipeDetection : MonoBehaviour
 
     private float endTouchTime;
 
-    private void Start()
-    {
-        touchInputManager = TouchInputManager.Instance;
-    }
+
 
     private void OnEnable()
     {
@@ -77,18 +74,26 @@ public class SwipeDetection : MonoBehaviour
         if (Vector2.Dot(swipeDirection, Vector2.up) > swipeThreshold)
         {
             Debug.Log("Swipe Up");
+            GameManager.Instance.board.MoveTiles(Vector2Int.up, 0, 1, 1, 1);
+
         }
         else if (Vector2.Dot(swipeDirection, Vector2.down) > swipeThreshold)
         {
             Debug.Log("Swipe Down");
+            GameManager.Instance.board.MoveTiles(Vector2Int.down, 0, 1, GameManager.Instance.board.grid.height - 2, -1);
+
         }
         else if (Vector2.Dot(swipeDirection, Vector2.left) > swipeThreshold)
         {
             Debug.Log("Swipe Left");
+            GameManager.Instance.board.MoveTiles(Vector2Int.left, 1, 1, 0, 1);
+
         }
         else if (Vector2.Dot(swipeDirection, Vector2.right) > swipeThreshold)
         {
             Debug.Log("Swipe Right");
+            GameManager.Instance.board.MoveTiles(Vector2Int.right, GameManager.Instance.board.grid.width - 2, -1, 0, 1);
+
         }
     }
 }
