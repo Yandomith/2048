@@ -1,0 +1,55 @@
+{
+    "version": 1,
+    "name": "CustomInput_Action",
+    "maps": [
+        {
+            "name": "Touch",
+            "id": "6fa2a9eb-0534-4473-b02f-473e489d879a",
+            "actions": [
+                {
+                    "name": "TouchPress",
+                    "type": "PassThrough",
+                    "id": "df530418-b155-4718-b54c-dab8a6727e8b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TouchPressPos",
+                    "type": "PassThrough",
+                    "id": "05542a83-51fb-4094-b1d7-3dfee3c66361",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cd9392b5-91f1-40c6-b2a3-0315824a8f73",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TouchPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7b12bd40-5529-40f8-be73-c0dd6dfff081",
+                    "path": "<Touchscreen>/primaryTouch/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TouchPressPos",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
